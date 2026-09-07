@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { Container, ButtonPrimary } from "@/components/ui";
 import { IconCheck } from "@/components/Icons";
 import { SITE } from "@/lib/site";
@@ -10,23 +10,48 @@ const POINTS = [
 ];
 
 export function HeroBanner() {
+  // Art direction: staande foto op mobiel, liggende banner vanaf md.
+  const common = {
+    alt: "Begeleider in gesprek met een gezin in de huiskamer",
+    sizes: "100vw",
+  };
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({
+    ...common,
+    src: "/images/hero-gezin.png",
+    width: 1942,
+    height: 809,
+  });
+  const {
+    props: { srcSet: mobileSrcSet, ...imgProps },
+  } = getImageProps({
+    ...common,
+    src: "/images/hero-gezin-mobiel.png",
+    width: 941,
+    height: 1672,
+  });
+
   return (
     <section className="relative isolate overflow-hidden">
-      <Image
-        src="/images/hero-gezin.png"
-        alt="Begeleider in gesprek met een gezin in de huiskamer"
-        fill
-        preload
-        sizes="100vw"
-        className="-z-10 object-cover object-[68%_center] lg:object-center"
-      />
+      <picture>
+        <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+        <source srcSet={mobileSrcSet} />
+        <img
+          {...imgProps}
+          alt={common.alt}
+          loading="eager"
+          fetchPriority="high"
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-center lg:object-center"
+        />
+      </picture>
 
-      {/* Leesbaarheidslaag: donker links, open naar rechts */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#221c18]/94 via-[#221c18]/80 to-[#221c18]/60 lg:from-[#221c18]/92 lg:via-[#221c18]/58 lg:to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-[#221c18]/60 to-transparent" />
+      {/* Leesbaarheidslaag — mobiel van onder naar boven, desktop van links naar rechts */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#221c18]/95 via-[#221c18]/70 to-[#221c18]/25 md:hidden" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-[#221c18]/92 via-[#221c18]/70 to-[#221c18]/25 md:block lg:via-[#221c18]/58 lg:to-transparent" />
 
-      <Container className="flex min-h-[560px] flex-col justify-center py-20 sm:min-h-[620px] sm:py-24">
-        <div className="max-w-xl">
+      <Container className="flex min-h-[640px] flex-col justify-end py-16 md:min-h-[600px] md:justify-center md:py-20 lg:min-h-[620px] lg:py-24">
+        <div className="md:max-w-xl">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] text-white uppercase ring-1 ring-white/25 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[#6fdb9c]" />
             Professionele jeugd- &amp; gezinszorg
