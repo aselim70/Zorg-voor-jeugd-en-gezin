@@ -19,7 +19,7 @@ export function Header() {
           <Image
             src="/images/logo-mark.png"
             alt=""
-            width={325}
+            width={302}
             height={304}
             loading="eager"
             className="h-11 w-auto"

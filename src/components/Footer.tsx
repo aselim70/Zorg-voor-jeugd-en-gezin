@@ -13,7 +13,7 @@ export function Footer() {
             src="/images/logo.png"
             alt={SITE.name}
             width={434}
-            height={495}
+            height={496}
             className="h-24 w-auto"
           />
           <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-text-secondary">
