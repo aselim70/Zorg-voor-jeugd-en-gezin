@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { LogoMark, IconMail, IconPhone, IconPin, IconClock } from "./Icons";
+import { IconMail, IconPhone, IconPin, IconClock } from "./Icons";
 import { NAV_LINKS, SERVICES, SITE } from "@/lib/site";
 import { Container } from "./ui";
 
@@ -8,12 +9,13 @@ export function Footer() {
     <footer className="border-t border-border bg-surface">
       <Container className="grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent">
-              <LogoMark className="h-5 w-5" />
-            </span>
-            <span className="text-[15px] font-extrabold text-text">{SITE.name}</span>
-          </div>
+          <Image
+            src="/images/logo.png"
+            alt={SITE.name}
+            width={434}
+            height={495}
+            className="h-24 w-auto"
+          />
           <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-text-secondary">
             Professionele begeleiding voor jeugd en gezin, met een persoonlijke aanpak en korte lijnen.
           </p>

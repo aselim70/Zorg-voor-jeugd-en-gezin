@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { LogoMark, IconMenu, IconClose, IconPhone } from "./Icons";
+import { IconMenu, IconClose, IconPhone } from "./Icons";
 import { NAV_LINKS, SITE } from "@/lib/site";
 import { Container } from "./ui";
 
@@ -14,10 +15,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/90 backdrop-blur">
       <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-accent">
-            <LogoMark className="h-5 w-5" />
-          </span>
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <Image
+            src="/images/logo-mark.png"
+            alt=""
+            width={325}
+            height={304}
+            loading="eager"
+            className="h-11 w-auto"
+          />
           <span className="text-[15px] font-extrabold leading-tight text-text sm:text-base">
             {SITE.name}
           </span>
