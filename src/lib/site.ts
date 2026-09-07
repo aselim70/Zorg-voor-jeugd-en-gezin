@@ -6,7 +6,7 @@ export const SITE = {
   phoneHref: "+31850001234",
   email: "info@zorgvoorjeugdengezin.nl",
   address: "Voorbeeldstraat 12, 1234 AB Voorbeeldstad",
-  kvk: "00000000",
+  kvk: "83695672",
   hours: "Ma t/m vrij, 09:00 - 17:00",
 };
 

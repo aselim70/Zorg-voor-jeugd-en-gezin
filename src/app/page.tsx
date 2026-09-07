@@ -1,46 +1,15 @@
 import Link from "next/link";
-import { Container, Eyebrow, ButtonPrimary, ButtonSecondary, SectionHeading, Card, IconTile } from "@/components/ui";
-import { HeroArt } from "@/components/HeroArt";
+import { Container, ButtonSecondary, SectionHeading, Card, IconTile } from "@/components/ui";
+import { HeroBanner } from "@/components/HeroBanner";
 import { CtaBanner } from "@/components/CtaBanner";
 import { DynamicIcon } from "@/components/IconMap";
-import { IconArrowRight, IconCheck } from "@/components/Icons";
+import { IconArrowRight } from "@/components/Icons";
 import { SERVICES, USPS, SITE } from "@/lib/site";
 
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="overflow-hidden pt-16 pb-8 sm:pt-20">
-        <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-          <div>
-            <Eyebrow>Professionele jeugd- &amp; gezinszorg</Eyebrow>
-            <h1 className="text-4xl font-extrabold leading-[1.12] text-text sm:text-5xl">
-              {SITE.tagline} voor uw gezin
-            </h1>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-text-secondary">
-              {SITE.name} biedt persoonlijke begeleiding aan jongeren, ouders en gezinnen —
-              met een vaste begeleider, korte lijnen en een aanpak die past bij uw situatie.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonPrimary href="/contact">Maak een afspraak</ButtonPrimary>
-              <ButtonSecondary href="/diensten">Onze diensten</ButtonSecondary>
-            </div>
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-[13.5px] font-medium text-text-secondary">
-              <span className="flex items-center gap-2">
-                <IconCheck className="h-4 w-4 text-accent" /> Gecertificeerde begeleiders
-              </span>
-              <span className="flex items-center gap-2">
-                <IconCheck className="h-4 w-4 text-accent" /> Werkzaam in de regio
-              </span>
-              <span className="flex items-center gap-2">
-                <IconCheck className="h-4 w-4 text-accent" /> Korte wachttijd
-              </span>
-            </div>
-          </div>
-
-          <HeroArt />
-        </Container>
-      </section>
+      <HeroBanner />
 
       {/* USP bar */}
       <section className="py-16 sm:py-20">
