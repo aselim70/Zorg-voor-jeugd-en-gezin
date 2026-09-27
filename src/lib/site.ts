@@ -1,121 +1,43 @@
 export const SITE = {
   name: "Zorg voor Jeugd en Gezin",
-  shortName: "Jeugd en Gezin",
-  tagline: "Samen bouwen aan een veilige, sterke toekomst",
-  phone: "085 - 000 12 34",
-  phoneHref: "+31850001234",
   email: "info@zorgvoorjeugdengezin.nl",
-  address: "Voorbeeldstraat 12, 1234 AB Voorbeeldstad",
+  agb: "94117047",
   kvk: "83695672",
-  hours: "Ma t/m vrij, 09:00 - 17:00",
+  tagline: "Samen verder, op jouw manier.",
 };
-
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/over-ons", label: "Over ons" },
-  { href: "/diensten", label: "Diensten" },
-  { href: "/contact", label: "Contact" },
+  { href: "/diensten", label: "Onze begeleiding" },
+  { href: "/werkwijze", label: "Werkwijze" },
+  { href: "/voor-verwijzers", label: "Voor verwijzers" },
 ];
-
 export const SERVICES = [
-  {
-    slug: "ambulante-begeleiding",
-    title: "Ambulante begeleiding",
-    short: "Praktische, persoonlijke ondersteuning bij u thuis, afgestemd op de situatie van uw gezin.",
-    icon: "home",
-  },
-  {
-    slug: "individuele-begeleiding",
-    title: "Individuele begeleiding jongeren",
-    short: "Een vaste begeleider die met de jongere werkt aan zelfvertrouwen, structuur en toekomstperspectief.",
-    icon: "user",
-  },
-  {
-    slug: "gezinsbegeleiding",
-    title: "Gezinsbegeleiding",
-    short: "Samen met het hele gezin werken aan een fijnere, stabielere thuissituatie.",
-    icon: "users",
-  },
-  {
-    slug: "opvoedondersteuning",
-    title: "Opvoedondersteuning",
-    short: "Praktische handvatten en advies voor ouders bij vragen over opvoeden en opgroeien.",
-    icon: "book",
-  },
-  {
-    slug: "pleegzorgbegeleiding",
-    title: "Pleegzorgbegeleiding",
-    short: "Begeleiding van pleeggezinnen en pleegkinderen voor een warme, stabiele plek.",
-    icon: "houseHeart",
-  },
-  {
-    slug: "crisisinterventie",
-    title: "Crisisinterventie",
-    short: "Snel schakelen wanneer een situatie direct om hulp en duidelijkheid vraagt.",
-    icon: "alert",
-  },
+  { slug: "jeugdzorg", href: "/jeugdzorg", title: "Jeugdzorg", short: "Een vertrouwd gezicht dat naast je staat. Samen werken aan zelfvertrouwen, ontwikkeling en perspectief.", icon: "seedling", label: "Onze specialisatie" },
+  { slug: "gezinsbegeleiding", href: "/gezinsbegeleiding", title: "Gezinsbegeleiding", short: "Meer rust, verbinding en begrip in het gezin. Met aandacht voor iedereen en wat er thuis speelt.", icon: "houseHeart" },
+  { slug: "individuele-begeleiding", href: "/overige-begeleiding#individuele-begeleiding", title: "Individuele begeleiding", short: "Ondersteuning bij wat voor jou belangrijk is. Op jouw tempo, met jouw doelen als vertrekpunt.", icon: "user" },
+  { slug: "gehandicaptenzorg", href: "/overige-begeleiding#gehandicaptenzorg", title: "Gehandicaptenzorg", short: "Aandacht voor mogelijkheden. Praktische begeleiding om mee te doen en zelfstandigheid te vergroten.", icon: "handshake" },
+  { slug: "ggz-begeleiding", href: "/overige-begeleiding#ggz-begeleiding", title: "GGZ-begeleiding", short: "Houvast en structuur in het dagelijks leven, afgestemd op jouw draagkracht en ondersteuningsbehoefte.", icon: "chat" },
 ] as const;
-
 export const USPS = [
-  {
-    title: "Persoonlijke aanpak",
-    description: "Elk gezin is anders — wij sluiten aan bij wat écht nodig is.",
-    icon: "shield",
-  },
-  {
-    title: "Gecertificeerde begeleiders",
-    description: "Ervaren, geregistreerde professionals met hart voor het vak.",
-    icon: "badge",
-  },
-  {
-    title: "Korte lijnen",
-    description: "Snel bereikbaar, duidelijke afspraken, geen wachtlijst-mystificatie.",
-    icon: "chat",
-  },
-  {
-    title: "Samenwerking voorop",
-    description: "Nauw contact met gemeente, school en andere betrokkenen.",
-    icon: "handshake",
-  },
+  { title: "SKJ-geregistreerd", description: "Deskundig en professioneel", icon: "badge" },
+  { title: "Eén vaste begeleider", description: "Een vertrouwd gezicht", icon: "users" },
+  { title: "Persoonlijk maatwerk", description: "Jouw situatie als vertrekpunt", icon: "seedling" },
+  { title: "Samen vooruit", description: "Met oog voor wat wél kan", icon: "compass" },
 ] as const;
-
 export const VALUES = [
-  {
-    title: "Betrokkenheid",
-    description: "We staan naast gezinnen, niet erboven — met oprechte aandacht voor ieders verhaal.",
-    icon: "seedling",
-  },
-  {
-    title: "Duidelijkheid",
-    description: "Heldere afspraken en realistische doelen, zodat iedereen weet waar hij aan toe is.",
-    icon: "compass",
-  },
-  {
-    title: "Transparantie",
-    description: "Open communicatie met gezin, verwijzer en gemeente, gedurende het hele traject.",
-    icon: "eye",
-  },
+  { title: "Professioneel en geregistreerd", description: "Een SKJ-geregistreerde begeleider met de benodigde diploma’s en een betrokken, zorgvuldige manier van werken.", icon: "badge" },
+  { title: "Aandacht voor jouw verhaal", description: "Geen standaardoplossing. We sluiten aan bij jouw leefwereld, achtergrond, talenten en behoeften.", icon: "users" },
+  { title: "Rust in complexe situaties", description: "Ook als het moeilijk wordt: rustig blijven, overzicht creëren en samen kijken welke stap nodig is.", icon: "shield" },
+  { title: "Flexibel als het nodig is", description: "Verandert jouw situatie? Dan kijken we opnieuw wat nodig is en passen we de begeleiding daarop aan.", icon: "compass" },
+  { title: "Onderbouwd en doelgericht", description: "Waar mogelijk werken we met bewezen methodieken, met ruimte voor maatwerk en nieuwe inzichten.", icon: "book" },
+  { title: "Samen met jouw omgeving", description: "In afstemming met jou werken we samen met ouders, school, verwijzers en andere betrokken professionals.", icon: "handshake" },
 ] as const;
-
 export const PROCESS = [
-  {
-    step: "01",
-    title: "Kennismaking",
-    description: "Een vrijblijvend gesprek om de vraag en situatie in kaart te brengen.",
-  },
-  {
-    step: "02",
-    title: "Plan van aanpak",
-    description: "Samen stellen we haalbare doelen op, afgestemd op het gezin en de verwijzer.",
-  },
-  {
-    step: "03",
-    title: "Begeleiding",
-    description: "Vaste begeleider, regelmatige contactmomenten en bijsturing waar nodig.",
-  },
-  {
-    step: "04",
-    title: "Evaluatie & afronding",
-    description: "We meten voortgang, evalueren met alle betrokkenen en ronden zorgvuldig af.",
-  },
-] as const;
+  { step: "01", title: "Kennismaken en luisteren", description: "Alles begint met jouw verhaal. We nemen de tijd om elkaar te leren kennen en te luisteren naar wat er speelt." },
+  { step: "02", title: "Behoeften en doelen bepalen", description: "Wat gaat goed, wat is lastig en wat wil je veranderen? Samen maken we de ondersteuningsvraag en haalbare doelen duidelijk." },
+  { step: "03", title: "Een persoonlijk plan", description: "We leggen onze afspraken, doelen en aanpak vast in een begeleidingsplan dat bij jouw situatie past." },
+  { step: "04", title: "Samen aan de slag", description: "Met praktische begeleiding werken we stap voor stap aan de doelen. Je hebt één vaste begeleider naast je." },
+  { step: "05", title: "Bespreken en evalueren", description: "We leggen de voortgang zorgvuldig vast en bespreken hoe het gaat. Jouw ervaring is daarbij onmisbaar." },
+  { step: "06", title: "Bijstellen waar nodig", description: "We passen de aanpak aan als behoeften of omstandigheden veranderen, en werken toe naar een passende afronding." },
+];

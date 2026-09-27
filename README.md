@@ -1,68 +1,60 @@
-# Zorg voor Jeugd en Gezin — website
+﻿# Zorg voor Jeugd en Gezin
 
-Next.js 16 + TypeScript + Tailwind CSS 4. Vier pagina's (Home, Over ons, Diensten, Contact)
-in het warme, groene design dat we eerder samen hebben bepaald.
+Een Nederlandstalige website voor een zelfstandige zorgprofessional, met jeugdzorg en gezinsbegeleiding als belangrijkste expertise. Gebouwd met Next.js 16.3, React 19, TypeScript en CSS/Tailwind 4.
 
-## Lokaal draaien
+## Starten
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. Voor productie: `npm run build` gevolgd door `npm start`. De standaardconfiguratie gebruikt de Next.js-server voor onder andere afbeeldingsoptimalisatie.
 
-Voor een productie-build:
+## Pagina’s
+
+- `/`: homepage
+- `/over-ons`: achtergrond en persoonlijke visie
+- `/diensten`: overzicht van vijf begeleidingsthema’s
+- `/jeugdzorg`: belangrijkste specialisatie
+- `/gezinsbegeleiding`: begeleiding voor het gezin
+- `/overige-begeleiding`: individuele begeleiding, gehandicaptenzorg en GGZ
+- `/werkwijze`: de zes stappen van het begeleidingstraject
+- `/voor-verwijzers`: samenwerking met gemeenten en professionals
+- `/contact`: contactgegevens en e-mailconcept
+- `/privacy`: werking van het contactformulier en gegevensgebruik op de website
+
+## Teksten en vormgeving aanpassen
+
+- `src/lib/site.ts`: e-mailadres, navigatie, begeleiding, kernwaarden en stappen.
+- `src/lib/pages.ts`: inhoud van de achtergrond- en begeleidingspagina’s.
+- `src/app/page.tsx`: homepage en persoonlijke boodschap.
+- `src/app/globals.css`: kleuren, typografie, layout en responsive gedrag.
+- `src/components/ContactForm.tsx`: formulier en e-mailconcept.
+
+Het bestaande logo is behouden. De nieuwe vormgeving gebruikt bosgroen, warme lichte tinten, serifkoppen en lokale natuurfoto’s. Decoratieve iconen worden verborgen voor schermlezers. Navigatie, formulierlabels, focusstijlen, een skiplink en verminderde beweging zijn ondersteund.
+
+## Contact en gegevens vóór publicatie
+
+Het formulier valideert verplichte velden en opent een `mailto:`-concept in het e-mailprogramma van de bezoeker. De bezoeker verstuurt dit vervolgens zelf. Een terugvaloptie toont het bericht en biedt een kopieerknop. Er is geen serververzending, databaseopslag of bevestiging van e-mailbezorging.
+
+Het e-mailadres `info@zorgvoorjeugdengezin.nl` is overgenomen uit het bestaande project en moet door de eigenaar worden bevestigd. Naam, telefoonnummer, persoonlijk portret, registratienummer, bedrijfsgegevens, regio en bereikbaarheid kunnen worden toegevoegd zodra ze beschikbaar zijn. Het voorbeeldtelefoonnummer en niet onderbouwde claims over een team, wachttijden en ervaringsjaren zijn verwijderd. De persoonlijke boodschap is concepttekst op basis van de briefing.
+
+Voor rechtstreeks verzenden is nog een maildienst en serverkoppeling nodig. Stem dan ook de privacytekst af op de werkelijke verwerking. Stel vóór publicatie de definitieve domeinnaam, hosting en contactgegevens vast.
+
+## Controles
 
 ```bash
+npm run lint
 npm run build
-npm run start
 ```
 
-## Wat nog moet worden ingevuld
+De routes worden vooraf gegenereerd. Controleer bij wijzigingen ook de mobiele navigatie, formulier-validatie, ankerlinks en de layout op telefoon, tablet en desktop.
 
-Alle tekst die nog een placeholder is, staat overzichtelijk bij elkaar in
-`src/lib/site.ts`:
+## Beeldbronnen
 
-- Naam, telefoonnummer, e-mailadres, adres, KvK-nummer en openingstijden (`SITE`)
-- De diensten met titel en omschrijving (`SERVICES`)
-- De USP's op de homepage (`USPS`)
-- De waarden op de Over-ons-pagina (`VALUES`)
-- De stappen van het traject (`PROCESS`)
+De foto’s staan lokaal in `public/`, zodat bezoekers geen verbinding met een externe fotodienst hoeven te maken.
 
-Het contactformulier op `/contact` is nu alleen visueel — er zit nog geen
-verzendfunctie achter. Zodra er een voorkeur is (bijv. een formulier-service
-als Formspree, of een eigen API-route), kan dat in `src/app/contact/page.tsx`
-aangesloten worden.
-
-## Design aanpassen
-
-Kleuren, lettertype en basisstijlen staan als CSS-variabelen bovenaan
-`src/app/globals.css` (`--color-accent`, `--color-bg`, etc.) — pas je die aan,
-dan verandert de hele site mee.
-
-## Deployen
-
-**Optie 1 — Vercel (makkelijkst, gratis)**
-Vercel is gemaakt door de bouwers van Next.js en heeft geen configuratie nodig.
-
-1. Ga naar [vercel.com](https://vercel.com) en maak een gratis account.
-2. Zet dit project in een GitHub-repository (of installeer de Vercel CLI:
-   `npm i -g vercel`, en run `vercel` vanuit deze map).
-3. Importeer de repository in Vercel — hij herkent automatisch dat het
-   Next.js is en deployt zonder verdere instellingen.
-4. Koppel daarna een eigen domein (bijv. zorgvoorjeugdengezin.nl) via
-   Vercel → Project → Settings → Domains.
-
-**Optie 2 — Eigen/bestaande hosting (cPanel, Strato, etc.)**
-Deze site heeft geen server nodig, dus kan ook als losse HTML/CSS/JS-bestanden
-geüpload worden naar gewone hosting:
-
-1. Voeg in `next.config.ts` toe: `output: "export"`.
-2. Run `npm run build` — dit maakt een map `out/` met alle statische bestanden.
-3. Upload de volledige inhoud van `out/` naar de hostingprovider (via FTP of
-   de bestandsbeheerder van cPanel), meestal in de map `public_html`.
-
-Let op: het contactformulier op `/contact` is nu alleen visueel. Ongeacht de
-hostingkeuze moet daar nog een verzendfunctie achter (bijv. Formspree, of een
-eigen backend), anders komen ingevulde berichten nergens aan.
+- `forest-light.jpg`: https://images.unsplash.com/photo-1441974231531-c6227db76b6e
+- `forest-path.jpg`: https://images.unsplash.com/photo-1448375240586-882707db888b
+- `logo.png` en `logo-icon.png`: bestaande projectbestanden.

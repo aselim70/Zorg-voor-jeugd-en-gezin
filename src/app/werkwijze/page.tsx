@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+import { PageHero } from "@/components/ContentPage";
+import { Container, SectionHeading } from "@/components/ui";
+import { Process } from "@/components/Process";
+import { CtaBanner } from "@/components/CtaBanner";
+
+export const metadata: Metadata = { title: "Onze werkwijze", description: "Van kennismaking tot evaluatie: ontdek hoe we samen werken aan haalbare doelen met een persoonlijk begeleidingsplan." };
+export default function Werkwijze() {
+  return <><PageHero label="Onze werkwijze" title="Een heldere aanpak." accent="Ruimte voor jouw tempo." intro="Goede begeleiding begint bij begrijpen wat er speelt. Samen geven we richting aan het traject. Met heldere afspraken, haalbare doelen en ruimte om onderweg bij te sturen." /><section className="section"><Container><SectionHeading eyebrow="Stap voor stap" title="Zo werken we samen" description="Je hoeft niet meteen te weten waar je wilt uitkomen. We brengen samen in kaart wat helpt en welke stappen passen bij jouw situatie." /><Process /></Container></section><section className="section about-section"><Container className="detail-grid"><div className="content-block"><h2>Een plan geeft richting. Jij blijft het vertrekpunt.</h2><p>We werken methodisch en gebruiken waar mogelijk evidence-based methodieken. Tegelijk blijft iedere situatie anders. We toetsen steeds of de gekozen aanpak aansluit bij jouw behoeften en mogelijkheden.</p><p>Afspraken, ontwikkelingen en bijzonderheden worden zorgvuldig vastgelegd. We evalueren samen, bespreken wat werkt en passen de doelen aan wanneer dat nodig is. Bij afronding kijken we wat je nodig hebt om verder te kunnen.</p></div><div className="content-block"><h2>Samen met jouw omgeving</h2><p>Waar passend betrekken we ouders, school, behandelaren of andere professionals. We maken duidelijke afspraken over wie wat doet en welke informatie we delen. Zo versterken de verschillende vormen van ondersteuning elkaar.</p></div></Container></section><CtaBanner /></>;
+}

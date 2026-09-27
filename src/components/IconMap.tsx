@@ -33,11 +33,10 @@ const MAP: Record<string, (props: SVGProps<SVGSVGElement>) => React.ReactElement
 
 export function DynamicIcon({
   name,
-  className,
-}: {
+  ...props
+}: SVGProps<SVGSVGElement> & {
   name: string;
-  className?: string;
 }) {
   const Icon = MAP[name] ?? IconShield;
-  return <Icon className={className} />;
+  return <Icon {...props} />;
 }
