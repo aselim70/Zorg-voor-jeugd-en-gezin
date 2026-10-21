@@ -55,9 +55,30 @@ test("sends to the owner with the visitor as reply-to after SMTP acceptance", as
   assert.equal(mail.from.address, "info@zorgvjg.nl");
   assert.equal(mail.replyTo.address, valid.email);
   assert.ok(mail.text.includes(valid.message));
+  assert.ok(mail.html.includes("Nieuwe contactaanvraag"));
+  assert.ok(mail.html.includes("Contactgegevens"));
+  assert.ok(mail.html.includes(valid.message));
   assert.equal(options.secure, true);
   assert.equal(options.requireTLS, true);
   assert.equal(smtp.isClosed(), true);
+});
+
+test("HTML email escapes visitor input and preserves message line breaks", async () => {
+  const smtp = handler();
+  const fields = {
+    ...valid, name: 'Jan & <Test> "Voorbeeld"',
+    phone: '<b>geen HTML</b>',
+    message: 'Eerste regel\n\n<img src="https://example.com/x" onerror="alert(1)">\nLaatste regel',
+  };
+  assert.equal((await smtp.post(request(fields))).status, 200);
+  const { mail } = smtp.calls[0];
+  assert.ok(mail.html.includes("Jan &amp; &lt;Test&gt; &quot;Voorbeeld&quot;"));
+  assert.ok(mail.html.includes("&lt;b&gt;geen HTML&lt;/b&gt;"));
+  assert.ok(mail.html.includes("Eerste regel<br><br>&lt;img"));
+  assert.ok(!mail.html.includes("<img"));
+  assert.ok(!mail.html.includes("<Test>"));
+  assert.ok(mail.text.includes(fields.message));
+  assert.equal(mail.replyTo.address, valid.email);
 });
 
 test("rejects invalid fields, header injection, spam, and oversized requests without sending", async () => {

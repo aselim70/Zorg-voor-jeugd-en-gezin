@@ -8,6 +8,50 @@ const topics = new Set(["Kennismaken", "Jeugdzorg", "Gezinsbegeleiding", "Overig
 const attempts = new Map<string, number>();
 const reply = (error: string, status: number) => Response.json({ error }, { status });
 
+function contactEmail(name: string, email: string, phone: string, topic: string, message: string) {
+  // All visitor-provided content must remain text, never HTML or attributes.
+  const escape = (text: string) => text.replace(/[&<>"']/g, character => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[character]!);
+  const labelStyle = "padding:0 0 5px;color:#697068;font-size:12px;font-weight:bold;letter-spacing:0.5px;";
+  const valueStyle = "padding:0 0 20px;color:#283d32;font-size:16px;line-height:1.6;word-break:break-word;overflow-wrap:anywhere;";
+  return `<!doctype html>
+<html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Nieuwe contactaanvraag</title></head>
+<body style="margin:0;padding:0;background-color:#f8f7f2;font-family:Arial,Helvetica,sans-serif;color:#283d32;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#f8f7f2"><tr><td align="center" style="padding:24px 12px;">
+    <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:600px;border:1px solid #dfe3d9;border-radius:12px;overflow:hidden;background-color:#fffefa;">
+      <tr><td bgcolor="#294c3c" style="padding:30px 28px;background-color:#294c3c;">
+        <p style="margin:0 0 16px;color:#dce7d6;font-size:13px;line-height:1.5;">${escape(SITE.name)}</p>
+        <h1 style="margin:0 0 12px;color:#ffffff;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:normal;line-height:1.25;">Nieuwe contactaanvraag</h1>
+        <p style="margin:0;color:#eaf0e7;font-size:15px;line-height:1.6;">Onderwerp: <strong>${escape(topic)}</strong></p>
+      </td></tr>
+      <tr><td style="padding:28px 28px 8px;">
+        <h2 style="margin:0 0 20px;color:#294c3c;font-size:18px;line-height:1.4;">Contactgegevens</h2>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;">
+          <tr><td style="${labelStyle}">Naam</td></tr>
+          <tr><td style="${valueStyle}">${escape(name)}</td></tr>
+          <tr><td style="${labelStyle}">E-mailadres</td></tr>
+          <tr><td style="${valueStyle}"><a href="mailto:${escape(encodeURIComponent(email))}" style="color:#294c3c;text-decoration:underline;">${escape(email)}</a></td></tr>
+          <tr><td style="${labelStyle}">Telefoonnummer</td></tr>
+          <tr><td style="${valueStyle}">${escape(phone || "Niet opgegeven")}</td></tr>
+        </table>
+      </td></tr>
+      <tr><td style="padding:0 28px 28px;">
+        <h2 style="margin:0 0 14px;color:#294c3c;font-size:18px;line-height:1.4;">Bericht</h2>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed;"><tr>
+          <td bgcolor="#eaf0e7" style="padding:20px;background-color:#eaf0e7;border-left:3px solid #71806a;color:#283d32;font-size:16px;line-height:1.8;word-break:break-word;overflow-wrap:anywhere;">${escape(message).replace(/\r\n|\r|\n/g, "<br>")}</td>
+        </tr></table>
+      </td></tr>
+      <tr><td style="padding:20px 28px;border-top:1px solid #dfe3d9;">
+        <p style="margin:0 0 7px;color:#294c3c;font-size:14px;font-weight:bold;line-height:1.6;">Wil je reageren?</p>
+        <p style="margin:0;color:#697068;font-size:13px;line-height:1.7;">Klik op Beantwoorden in je mailprogramma. Je antwoord gaat rechtstreeks naar ${escape(name)}.</p>
+      </td></tr>
+    </table>
+    <p style="max-width:540px;margin:16px 0 0;color:#697068;font-size:12px;line-height:1.7;">Ontvangen via het contactformulier van ${escape(SITE.name)}.</p>
+  </td></tr></table>
+</body></html>`;
+}
+
 export async function POST(request: Request) {
   if (request.headers.get("origin") !== new URL(request.url).origin) return reply("Verstuur je bericht via het formulier op deze website.", 403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) return reply("Ongeldig bericht.", 415);
@@ -60,6 +104,7 @@ export async function POST(request: Request) {
       from: { name: SITE.name, address: user }, to: SITE.email,
       replyTo: { name, address: email }, subject: `Contact website — ${topic}`,
       text: `Naam: ${name}\nE-mailadres: ${email}\nTelefoon: ${phone || "Niet opgegeven"}\nOnderwerp: ${topic}\n\n${message}`,
+      html: contactEmail(name, email, phone, topic, message),
       disableFileAccess: true, disableUrlAccess: true,
     });
     if (!result.accepted?.length) throw new Error("Message not accepted");
