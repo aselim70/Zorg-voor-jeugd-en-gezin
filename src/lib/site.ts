@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Zorg voor Jeugd en Gezin",
-  email: "info@zorgvoorjeugdengezin.nl",
+  email: "info@zorgvjg.nl",
   agb: "94117047",
   kvk: "83695672",
   tagline: "Samen verder, op jouw manier.",

@@ -1,3 +1,5 @@
+import { SITE } from "./site";
+
 export type ContentPage = {
   label: string;
   title: string;
@@ -71,11 +73,11 @@ export const PAGES: Record<string, ContentPage> = {
   },
   privacy: {
     label: "Privacy", title: "Zorgvuldig met je gegevens.", accent: "Duidelijk over deze website.",
-    intro: "Hier lees je wat er gebeurt wanneer je deze website gebruikt of via de contactpagina een e-mail opstelt.",
+    intro: "Hier lees je wat er gebeurt wanneer je deze website gebruikt of via de contactpagina een bericht verstuurt.",
     sections: [
-      { title: "Het contactformulier", paragraphs: ["Het formulier op deze website verstuurt of bewaart je bericht niet op een server. De ingevulde informatie wordt in je browser gebruikt om een concept in je eigen e-mailprogramma te openen. Pas als je daar op verzenden klikt, verstuur je het bericht naar Zorg voor Jeugd en Gezin.", "Je naam, e-mailadres en eventuele telefoonnummer helpen om je vraag te beantwoorden. Deel in een eerste bericht geen medische gegevens, burgerservicenummer of cliëntdossiers. Een passende manier om inhoudelijke informatie te delen bespreken we persoonlijk."] },
+      { title: "Het contactformulier", paragraphs: [`Als je het formulier verstuurt, verwerkt de websiteserver je naam, e-mailadres, eventuele telefoonnummer, onderwerp en bericht om deze via Zoho Mail naar ${SITE.email} te sturen. We gebruiken deze gegevens om je vraag te beantwoorden. Het formulier slaat je bericht niet op in een websitedatabase; het bericht wordt wel verwerkt en bewaard in de e-mailomgeving.`, "Je naam, e-mailadres en eventuele telefoonnummer helpen om je vraag te beantwoorden. Deel in een eerste bericht geen medische gegevens, burgerservicenummer of cliëntdossiers. Een passende manier om inhoudelijke informatie te delen bespreken we persoonlijk."] },
       { title: "Cookies en externe inhoud", paragraphs: ["Deze website bevat geen door ons toegevoegde advertentiecookies of bezoekersanalyses. De afbeeldingen worden vanaf de website zelf geladen. De hostingprovider kan technische gegevens verwerken die nodig zijn voor het aanbieden en beveiligen van de website."] },
-      { title: "Vragen over privacy", paragraphs: ["Heb je een vraag over gegevens die je met Zorg voor Jeugd en Gezin hebt gedeeld? Neem dan contact op via het e-mailadres op de contactpagina. Voor de start van een begeleidingstraject worden afzonderlijke afspraken gemaakt over dossiervorming en gegevensuitwisseling."] },
+      { title: "Vragen over privacy", paragraphs: [`Heb je een vraag over gegevens die je met Zorg voor Jeugd en Gezin hebt gedeeld? Neem dan contact op via ${SITE.email}. Voor de start van een begeleidingstraject worden afzonderlijke afspraken gemaakt over dossiervorming en gegevensuitwisseling.`] },
     ],
     asideTitle: "Een vraag over je gegevens?", asideText: "Neem gerust contact op. Vermeld kort dat je vraag over privacy gaat, zonder gevoelige informatie in het bericht op te nemen.",
   },
